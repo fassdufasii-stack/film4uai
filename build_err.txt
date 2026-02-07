@@ -1,0 +1,44 @@
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 1807 modules transformed.
+rendering chunks...
+[33m[plugin vite:reporter] 
+(!) C:/Users/faisa/OneDrive/Desktop/Film4uai/src/services/movieService.js is dynamically imported by C:/Users/faisa/OneDrive/Desktop/Film4uai/src/App.jsx but also statically imported by C:/Users/faisa/OneDrive/Desktop/Film4uai/src/App.jsx, C:/Users/faisa/OneDrive/Desktop/Film4uai/src/components/MovieCard.jsx, C:/Users/faisa/OneDrive/Desktop/Film4uai/src/components/ProfileModal.jsx, C:/Users/faisa/OneDrive/Desktop/Film4uai/src/components/UploadModal.jsx, dynamic import will not move module into another chunk.
+[39m
+computing gzip size...
+[2mdist/[22m[32mmanifest.webmanifest                           [39m[1m[2m    0.34 kB[22m[1m[22m
+[2mdist/[22m[32mindex.html                                     [39m[1m[2m    1.40 kB[22m[1m[22m[2m │ gzip:   0.71 kB[22m
+[2mdist/[22m[35massets/index-CzSaIhJ1.css                      [39m[1m[2m   43.56 kB[22m[1m[22m[2m │ gzip:   8.99 kB[22m
+[2mdist/[22m[36massets/workbox-window.prod.es5-BIl4cyR9.js     [39m[1m[2m    5.76 kB[22m[1m[22m[2m │ gzip:   2.37 kB[22m
+[2mdist/[22m[36massets/howler-Dv2yDbM0.js                      [39m[1m[2m   27.03 kB[22m[1m[22m[2m │ gzip:   8.09 kB[22m
+[2mdist/[22m[36massets/navmesh-B1pUQaZh.js                     [39m[1m[2m   55.09 kB[22m[1m[22m[2m │ gzip:  11.02 kB[22m
+[2mdist/[22m[36massets/boolean-DnW06Vcs.js                     [39m[1m[2m   56.52 kB[22m[1m[22m[2m │ gzip:  19.68 kB[22m
+[2mdist/[22m[36massets/process-VPR0TfJD.js                     [39m[1m[2m   67.76 kB[22m[1m[22m[2m │ gzip:  23.02 kB[22m
+[2mdist/[22m[36massets/gaussian-splat-compression-CH16aANn.js  [39m[1m[2m   82.53 kB[22m[1m[22m[2m │ gzip:  23.38 kB[22m
+[2mdist/[22m[36massets/ui-CVBmWQBQ.js                          [39m[1m[2m   91.95 kB[22m[1m[22m[2m │ gzip:  28.89 kB[22m
+[2mdist/[22m[36massets/opentype-U-0Y99ve.js                    [39m[1m[2m  173.53 kB[22m[1m[22m[2m │ gzip:  50.26 kB[22m
+[2mdist/[22m[36massets/physics-ChHD2_fM.js                     [39m[1m[33m1,987.56 kB[39m[22m[2m │ gzip: 722.72 kB[22m
+[2mdist/[22m[36massets/index-BjTR5DPv.js                       [39m[1m[33m2,504.22 kB[39m[22m[2m │ gzip: 719.29 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 6.80s[39m
+[31merror during build:
+Error: 
+  Configure "workbox.maximumFileSizeToCacheInBytes" to change the limit: the default value is 2 MiB.
+  Check https://vite-pwa-org.netlify.app/guide/faq.html#missing-assets-from-sw-precache-manifest for more information.
+  Assets exceeding the limit:
+  - assets/index-BjTR5DPv.js is 2.5 MB, and won't be precached.
+
+    at logWorkboxResult (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite-plugin-pwa/dist/chunk-G4TAN34B.js:44:13)
+    at generateServiceWorker (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite-plugin-pwa/dist/index.js:209:3)
+    at async _generateSW (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite-plugin-pwa/dist/index.js:234:5)
+    at async Object.handler (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite-plugin-pwa/dist/index.js:427:13)
+    at async PluginDriver.hookParallel (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/rollup/dist/es/shared/node-entry.js:22452:17)
+    at async Object.close (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/rollup/dist/es/shared/node-entry.js:23471:13)
+    at async buildEnvironment (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite/dist/node/chunks/config.js:33555:15)
+    at async Object.build (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite/dist/node/chunks/config.js:33900:19)
+    at async Object.buildApp (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite/dist/node/chunks/config.js:33897:153)
+    at async CAC.<anonymous> (file:///C:/Users/faisa/OneDrive/Desktop/Film4uai/node_modules/vite/dist/node/cli.js:629:3)[39m
