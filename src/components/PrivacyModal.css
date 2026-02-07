@@ -1,0 +1,68 @@
+.privacy-modal {
+    max-width: 600px !important;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.privacy-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.privacy-header .icon-ai {
+    color: var(--color-ai);
+    margin-bottom: 1rem;
+}
+
+.privacy-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.privacy-scroll-area::-webkit-scrollbar {
+    width: 4px;
+}
+
+.privacy-scroll-area::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+.privacy-section {
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-ai);
+    margin-bottom: 0.8rem;
+}
+
+.section-title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.privacy-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #888;
+    margin: 0;
+}
+
+.privacy-meta {
+    font-size: 0.75rem !important;
+    text-align: center;
+    opacity: 0.5;
+    margin-top: 1rem !important;
+}

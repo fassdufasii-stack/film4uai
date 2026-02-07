@@ -1,0 +1,219 @@
+.creator-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.4s ease;
+    overflow: hidden;
+}
+
+/* Premium Animated Background */
+.creator-overlay::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+    animation: rotateBg 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateBg {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.creator-container {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 4rem;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    z-index: 5001;
+}
+
+.close-creator {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: transparent;
+    color: #444;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-creator:hover {
+    color: white;
+}
+
+.creator-header {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 2rem;
+}
+
+.creator-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: var(--color-ai);
+    margin-bottom: 1rem;
+}
+
+.creator-name {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.creator-role {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.creator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.vision-text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #ccc;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.ai-acknowledgment {
+    font-size: 0.8rem;
+    color: var(--color-ai);
+    opacity: 0.7;
+    border-left: 2px solid var(--color-ai);
+    padding-left: 1rem;
+}
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.focus-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.focus-item .icon {
+    color: var(--color-ai);
+}
+
+.philosophy-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    color: #888;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.contact-btn:hover {
+    background: white;
+    color: black;
+    transform: translateY(-3px);
+}
+
+.creator-footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.promo-closing {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .creator-container {
+        padding: 2rem;
+        width: 95%;
+    }
+
+    .creator-name {
+        font-size: 2.5rem;
+    }
+
+    .creator-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

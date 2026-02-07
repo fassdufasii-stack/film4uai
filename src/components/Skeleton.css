@@ -1,0 +1,155 @@
+.skeleton-hero {
+    height: 85vh;
+    width: 100%;
+    background: #050505;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skeleton-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 2;
+}
+
+.skeleton-badge {
+    width: 120px;
+    height: 24px;
+    background: #111;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    width: 60%;
+    height: 60px;
+    background: #111;
+    border-radius: 8px;
+}
+
+.skeleton-text {
+    width: 40%;
+    height: 20px;
+    background: #111;
+    border-radius: 4px;
+}
+
+.skeleton-text.short {
+    width: 25%;
+}
+
+.skeleton-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skeleton-btn {
+    width: 150px;
+    height: 48px;
+    background: #111;
+    border-radius: 4px;
+}
+
+/* AI SCANNING ANIMATION */
+.ai-scan-bar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(99, 102, 241, 0.05) 50%,
+            transparent 100%);
+    animation: scan 3s infinite linear;
+}
+
+@keyframes scan {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* CARD SKELETON */
+.skeleton-card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.skeleton-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: #111;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-scan-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(180deg,
+            transparent 0%,
+            rgba(99, 102, 241, 0.1) 50%,
+            transparent 100%);
+    animation: scanVertical 2s infinite ease-in-out;
+}
+
+@keyframes scanVertical {
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 200%;
+    }
+}
+
+.skeleton-line {
+    width: 100%;
+    height: 14px;
+    background: #111;
+    border-radius: 2px;
+}
+
+.skeleton-line.short {
+    width: 60%;
+}
+
+/* SECTION SKELETON */
+.skeleton-section {
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.skeleton-title-sm {
+    width: 200px;
+    height: 24px;
+    background: #111;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+}
+
+.skeleton-grid {
+    display: flex;
+    gap: 1.5rem;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .skeleton-card {
+        width: 140px;
+    }
+}

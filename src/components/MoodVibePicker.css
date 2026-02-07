@@ -1,0 +1,211 @@
+.vibe-picker-container {
+    padding: 4rem 0;
+    margin-top: 2rem;
+}
+
+.vibe-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease;
+}
+
+.vibe-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.vibe-subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.vibe-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.vibe-card {
+    position: relative;
+    width: 180px;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.vibe-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--vibe-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--vibe-color);
+}
+
+.vibe-card.active {
+    background: var(--vibe-color);
+    border-color: transparent;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.vibe-card.active .vibe-name,
+.vibe-card.active .vibe-desc,
+.vibe-card.active .vibe-icon-wrapper {
+    color: white;
+}
+
+.vibe-card.active .vibe-emoji {
+    transform: scale(1.5) rotate(10deg);
+}
+
+.vibe-icon-wrapper {
+    margin-bottom: 1rem;
+    color: var(--vibe-color);
+    transition: all 0.3s;
+}
+
+.vibe-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.vibe-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: white;
+}
+
+.vibe-desc {
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: 500;
+}
+
+/* BLOBS ANIMATION */
+.vibe-blobs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.vibe-card:hover .vibe-blobs,
+.vibe-card.active .vibe-blobs {
+    opacity: 0.4;
+}
+
+.blob {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--vibe-color);
+    filter: blur(40px);
+    border-radius: 50%;
+    animation: blobMove 4s infinite alternate;
+}
+
+.blob:nth-child(1) {
+    top: -20px;
+    left: -20px;
+}
+
+.blob:nth-child(2) {
+    bottom: -20px;
+    right: -20px;
+    animation-delay: -2s;
+}
+
+@keyframes blobMove {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(20px, 20px);
+    }
+}
+
+.vibe-ping {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    animation: ping 1.5s infinite;
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .vibe-card {
+        width: 140px;
+        height: 180px;
+    }
+
+    .vibe-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vibe-grid {
+        gap: 0.8rem;
+    }
+
+    .vibe-card {
+        width: calc(50% - 1rem);
+        padding: 1rem;
+    }
+
+    .vibe-emoji {
+        font-size: 1.8rem;
+    }
+
+    .vibe-name {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,148 @@
+.daily-channel {
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.4) 0%, rgba(10, 10, 10, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.daily-channel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.channel-header {
+    margin-bottom: 3rem;
+}
+
+.channel-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #f87171;
+}
+
+.live-indicator .dot {
+    width: 6px;
+    height: 6px;
+    background: #f87171;
+    border-radius: 50%;
+    animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseRed {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.channel-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-ai {
+    color: var(--color-ai);
+}
+
+.ai-narrative {
+    color: #888;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: 700px;
+    line-height: 1.5;
+}
+
+.icon-sparkle {
+    color: #fbbf24;
+    flex-shrink: 0;
+}
+
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+}
+
+.channel-item {
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.channel-item:hover {
+    transform: translateY(-10px);
+}
+
+.prime-pick {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: #fbbf24;
+    color: black;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 2px;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4);
+}
+
+.item-0 {
+    grid-column: span 1;
+}
+
+@media (max-width: 1200px) {
+    .channel-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .channel-title {
+        font-size: 1.8rem;
+    }
+
+    .channel-grid {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+
+    .channel-item {
+        flex: 0 0 160px;
+    }
+}

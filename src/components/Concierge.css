@@ -1,0 +1,219 @@
+.concierge-wrapper {
+    display: block !important;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999999 !important;
+    /* Ensure it's on top of everything */
+}
+
+.concierge-trigger {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #0ea5e9;
+    /* Strong fallback blue */
+    background: var(--gradient-ai);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.6);
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999999;
+}
+
+.concierge-trigger:hover {
+    transform: scale(1.1);
+}
+
+.pulse-ai {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-ai);
+    opacity: 0.5;
+    animation: pulseLoop 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulseLoop {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* CHAT WINDOW */
+.concierge-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px;
+    height: 550px;
+    background: #0a0a0a;
+    /* Solid black to prevent any bleed */
+    border: 2px solid rgba(0, 242, 234, 0.3);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.concierge-wrapper.open .concierge-window {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.concierge-header {
+    padding: 1.2rem 1.5rem;
+    background: #111;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.gpt-badge {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: #00f2ea;
+    letter-spacing: 2px;
+}
+
+.icon-gold {
+    color: #00f2ea;
+}
+
+.concierge-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: #000000 !important;
+    /* Pure Black Background */
+    min-height: 350px;
+    border: none;
+}
+
+.msg-bubble {
+    padding: 1.5rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    /* Larger font */
+    line-height: 1.6;
+    max-width: 95%;
+    word-wrap: break-word;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 999999 !important;
+}
+
+.msg-bubble.ai {
+    background: #ffffff !important;
+    /* Pure white background */
+    color: #000000 !important;
+    /* Pure black text - NOTHING is more visible than this */
+    align-self: flex-start;
+    border: 3px solid #0ea5e9;
+    /* Thick blue border */
+    white-space: pre-wrap;
+    font-weight: 800;
+    /* Extra bold */
+    text-shadow: none !important;
+    -webkit-text-fill-color: initial !important;
+    /* Force reset of gradient text clips */
+}
+
+.msg-bubble.user {
+    background: #0ea5e9 !important;
+    /* Blue background for user */
+    color: #ffffff !important;
+    /* White text */
+    align-self: flex-end;
+    font-weight: 700;
+    -webkit-text-fill-color: initial !important;
+}
+
+.msg-bubble.typing {
+    background: #111 !important;
+    color: #0ea5e9 !important;
+    border: 1px solid #333;
+}
+
+.concierge-input {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    gap: 0.8rem;
+}
+
+.concierge-input input {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    padding: 0.8rem 1rem;
+    border-radius: 100px;
+    color: white;
+    outline: none;
+}
+
+.concierge-input button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--gradient-ai);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 500px) {
+    .concierge-window {
+        width: 100vw;
+        height: 100vh;
+        bottom: -30px;
+        right: -30px;
+        border-radius: 0;
+    }
+}

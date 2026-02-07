@@ -1,0 +1,230 @@
+/* NAVBAR NEW DESIGN - FILM4U AI PRIME */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: var(--z-navbar);
+    padding: 1.5rem 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: linear-gradient(180deg, rgba(5, 5, 16, 0.9) 0%, transparent 100%);
+}
+
+.navbar.scrolled {
+    background: rgba(5, 5, 16, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.film {
+    color: white;
+}
+
+.ai {
+    font-weight: 900;
+    background: var(--gradient-ai);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 242, 234, 0.3);
+}
+
+/* SEARCH BAR REDESIGN */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    padding: 0.6rem 1.2rem;
+    width: 400px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-bar.ai-enhanced {
+    border: 1px solid rgba(0, 242, 234, 0.2);
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.05);
+}
+
+.search-bar.ai-enhanced:focus-within {
+    border-color: var(--color-ai);
+    box-shadow: 0 0 20px rgba(0, 242, 234, 0.15);
+}
+
+.ai-icon {
+    color: var(--color-ai);
+    margin-right: 0.8rem;
+    filter: drop-shadow(0 0 5px rgba(0, 242, 234, 0.5));
+    animation: pulse-icon 2s infinite alternate;
+}
+
+@keyframes pulse-icon {
+    from {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    outline: none;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    font-weight: 400;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-muted);
+}
+
+/* NAV ACTIONS */
+.nav-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.btn-icon {
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-icon:hover {
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-auth {
+    background: white;
+    color: black;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* USER PROFILE */
+.user-profile {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.user-profile:hover {
+    border-color: var(--color-ai);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .search-bar {
+        width: 280px;
+    }
+
+    .search-bar:focus-within {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .search-bar {
+        width: 42px;
+        padding: 0;
+        justify-content: center;
+        background: transparent;
+        border: none;
+    }
+
+    .search-bar input {
+        display: none;
+    }
+
+    .search-icon {
+        margin: 0;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .search-bar:focus-within {
+        position: absolute;
+        top: 4.5rem;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        background: #111;
+        border: 1px solid var(--color-ai);
+        padding: 0.8rem 1rem;
+        z-index: 100;
+    }
+
+    .search-bar:focus-within input {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+}

@@ -1,0 +1,224 @@
+.profile-container {
+    width: 900px;
+    height: 600px;
+    background: #0a0a0a;
+    display: flex;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    animation: modalShow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.profile-sidebar {
+    width: 280px;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-avatar-large {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-ai);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.user-tier {
+    font-size: 0.7rem;
+    color: var(--color-ai);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+.profile-nav {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile-nav button {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.profile-nav button.active,
+.profile-nav button:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+}
+
+.profile-body {
+    flex: 1;
+    padding: 3rem 4rem;
+    overflow-y: auto;
+}
+
+.body-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+}
+
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+.profile-section label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #444;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.profile-input {
+    width: 100%;
+    background: #151515;
+    border: 1px solid #222;
+    padding: 1rem;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.chip {
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    background: #151515;
+    border: 1px solid #222;
+    color: #888;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chip.active {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+.toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #151515;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.toggle-switch {
+    width: 40px;
+    height: 20px;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.toggle-switch.active {
+    background: var(--color-ai);
+}
+
+.toggle-switch.active::before {
+    left: 22px;
+}
+
+.btn-save-profile {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1.2rem;
+    background: var(--gradient-ai);
+    border-radius: 12px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    cursor: pointer;
+    border: none;
+}
+
+@keyframes modalShow {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 950px) {
+    .profile-container {
+        width: 95%;
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #222;
+    }
+
+    .profile-body {
+        padding: 2rem;
+    }
+}
