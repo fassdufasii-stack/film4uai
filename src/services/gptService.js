@@ -66,10 +66,10 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
     } catch (error) {
         console.error(`AI Model ${currentModel} error:`, error);
 
-        // Specific handling for "Load failed" (TypeErrors)
+        // Specific handling for "Load failed" (TypeErrors on iOS/Safari)
         let errorMessage = error.message;
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-            errorMessage = "Network error: AI connection blocked or offline.";
+        if (error instanceof TypeError && (error.message.includes('fetch') || error.message === 'Load failed')) {
+            errorMessage = "AI core unreachable. Please check your internet or disable ad-blockers/tracking protection.";
         }
 
         // If we have more models to try, retry with the next one

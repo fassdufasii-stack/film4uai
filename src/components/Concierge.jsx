@@ -55,11 +55,16 @@ const Concierge = ({ movies, onSelectMovie, onRecommendations }) => {
 
             <div className="concierge-window">
                 <div className="concierge-header">
-                    <div className="header-info">
-                        <Sparkles size={16} className="icon-gold" />
-                        <span className="gpt-badge">AI ACTIVE</span>
+                    <div className="header-content-left">
+                        <div className="header-info">
+                            <Sparkles size={16} className="icon-gold" />
+                            <span className="gpt-badge">AI ACTIVE</span>
+                        </div>
+                        <h3>Film4u AI Assistant</h3>
                     </div>
-                    <h3>Film4u AI Assistant</h3>
+                    <button className="close-concierge mobile-only" onClick={() => setIsOpen(false)}>
+                        <X size={20} />
+                    </button>
                 </div>
 
                 <div className="concierge-messages" ref={scrollRef}>
