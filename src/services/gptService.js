@@ -39,13 +39,15 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
     const currentModel = FALLBACK_MODELS[modelIndex];
 
     try {
-        // console.log(`Connecting to AI Model: ${currentModel}...`); // Debug log
+        // Safari/iOS robustness: explicit mode and referrer policy
         const response = await fetch(OPENROUTER_API_URL, {
             method: "POST",
+            mode: 'cors',
+            referrerPolicy: 'no-referrer',
+            credentials: 'omit',
             headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-                "X-Title": "Film4u AI"
+                "Authorization": `Bearer ${apiKey.trim()}`,
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 model: currentModel,
@@ -75,6 +77,8 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
         // If we have more models to try, retry with the next one
         if (modelIndex < FALLBACK_MODELS.length - 1) {
             console.warn(`Switching to backup model: ${FALLBACK_MODELS[modelIndex + 1]}`);
+            // Small delay before retry to allow network to breathe (helpful on mobile)
+            await new Promise(r => setTimeout(r, 1000));
             return callOpenRouter(messages, temperature, maxTokens, modelIndex + 1);
         }
 

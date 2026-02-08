@@ -28,19 +28,19 @@ const Concierge = ({ movies, onSelectMovie, onRecommendations }) => {
         setIsTyping(true);
 
         try {
-            // 1. Get recommendation IDs from Gemini
-            const recommendedIds = await getAIRecommendations(userMsg, movies);
+            // Run both in parallel for speed and reliability
+            const [aiResponse, recommendedIds] = await Promise.all([
+                getDirectChatReply(userMsg).catch(err => `Chat focus is offline, but I'm still scanning the catalog. ${err.message}`),
+                getAIRecommendations(userMsg, movies).catch(() => []) // Silently fallback to [] if recs fail
+            ]);
 
-            // 2. Get the natural language reply
-            const aiResponse = await getDirectChatReply(userMsg);
             setMessages(prev => [...prev, { role: 'ai', text: aiResponse }]);
 
-            // 3. Update the main UI if movies were found
             if (recommendedIds && recommendedIds.length > 0) {
                 onRecommendations && onRecommendations(recommendedIds);
             }
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'ai', text: err.message || "My analytical links are currently unstable." }]);
+            setMessages(prev => [...prev, { role: 'ai', text: "My analytical core is recalibrating. Please try again in a moment." }]);
         } finally {
             setIsTyping(false);
         }
