@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabaseClient'
 import { MOVIES as MOCK_MOVIES } from '../data/mockData'
-import { fetchTrendingOTT } from './tmdbService'
+import { fetchTrendingOTT, fetchDiscoverContent } from './tmdbService'
 
 /**
  * Normalization Helper
@@ -19,10 +19,17 @@ const normalizeMovie = (m) => ({
 export const getAllContent = async () => {
     let combinedData = [];
 
-    // 1. Fetch live TMDB Data (Primary Source)
+    // 1. Fetch live TMDB Data (Trending + Sci-Fi + Action)
     try {
-        const liveOTT = await fetchTrendingOTT();
-        combinedData = [...liveOTT];
+        const liveTrending = await fetchTrendingOTT();
+        const sciFi = await fetchDiscoverContent('878'); // Sci-Fi
+        const action = await fetchDiscoverContent('28'); // Action
+
+        // Remove duplicates by ID
+        const allTmdb = [...liveTrending, ...sciFi, ...action];
+        const uniqueTmdb = Array.from(new Map(allTmdb.map(m => [m.id, m])).values());
+
+        combinedData = [...uniqueTmdb];
     } catch (e) {
         console.warn("TMDB Fetch Failed, using Fallback:", e);
     }

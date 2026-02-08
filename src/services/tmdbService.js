@@ -4,8 +4,25 @@
  * Now integrated with real-world Availability (Watch Providers).
  */
 
-const TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY;
+import freekeys from 'freekeys';
+
+const FALLBACK_TMDB_KEY = "e547e17d4e91f3e62a571655cd1ccaff";
+let ACTIVE_TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY || FALLBACK_TMDB_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
+
+// Initialize keys from freekeys package
+const initKeys = async () => {
+    try {
+        const params = await freekeys();
+        if (params && params.tmdb_key) {
+            ACTIVE_TMDB_KEY = params.tmdb_key;
+        }
+    } catch (e) {
+        console.warn("Freekeys recovery failed, using standard key.");
+    }
+};
+
+initKeys();
 
 // AI Logic: Map TMDB Genres to our Mood Discovery system
 const MOOD_MAP = {
@@ -44,7 +61,7 @@ const getGenreName = (id) => {
  */
 export const getWatchProviders = async (id, type = 'movie', region = 'IN') => {
     try {
-        const response = await fetch(`${BASE_URL}/${type}/${id}/watch/providers?api_key=${TMDB_KEY}`);
+        const response = await fetch(`${BASE_URL}/${type}/${id}/watch/providers?api_key=${ACTIVE_TMDB_KEY}`);
         const data = await response.json();
         const providers = data.results[region];
 
@@ -59,7 +76,7 @@ export const getWatchProviders = async (id, type = 'movie', region = 'IN') => {
 
 export const fetchTrendingOTT = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/trending/all/week?api_key=${TMDB_KEY}`);
+        const response = await fetch(`${BASE_URL}/trending/all/week?api_key=${ACTIVE_TMDB_KEY}`);
         const data = await response.json();
 
         const results = await Promise.all(data.results.map(async (item) => {
@@ -98,7 +115,7 @@ export const fetchTrendingOTT = async () => {
 export const searchTMDB = async (query) => {
     try {
         if (!query) return [];
-        const response = await fetch(`${BASE_URL}/search/multi?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}&include_adult=false`);
+        const response = await fetch(`${BASE_URL}/search/multi?api_key=${ACTIVE_TMDB_KEY}&query=${encodeURIComponent(query)}&include_adult=false`);
         const data = await response.json();
 
         return (data.results || []).filter(item => item.media_type === 'movie' || item.media_type === 'tv').map(item => ({
@@ -115,6 +132,34 @@ export const searchTMDB = async (query) => {
         })).slice(0, 10); // Limit to top 10
     } catch (error) {
         console.error("TMDB Search Error:", error);
+        return [];
+    }
+};
+/**
+ * Discover content by genre or category
+ */
+export const fetchDiscoverContent = async (genreId = '') => {
+    try {
+        const url = `${BASE_URL}/discover/movie?api_key=${ACTIVE_TMDB_KEY}&with_genres=${genreId}&sort_by=popularity.desc&include_adult=false`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        return (data.results || []).map(item => ({
+            id: item.id,
+            title: item.title,
+            poster: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            banner: `https://image.tmdb.org/t/p/original${item.backdrop_path}`,
+            description: `AI Summary: ${item.overview}`,
+            platform: 'OTT Streaming',
+            releaseDate: item.release_date || '2024-01-01',
+            tags: (item.genre_ids || []).map(gId => getGenreName(gId)),
+            language: item.original_language === 'ml' ? 'Malayalam' : (item.original_language === 'en' ? 'English' : item.original_language),
+            moods: [MOOD_MAP[item.genre_ids?.[0]] || 'Bored'],
+            isIndie: false,
+            type: 'Movie'
+        }));
+    } catch (error) {
+        console.error("TMDB Discover Error:", error);
         return [];
     }
 };
