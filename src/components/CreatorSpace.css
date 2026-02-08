@@ -7,10 +7,11 @@
     background: #000;
     z-index: 5000;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     animation: fadeIn 0.4s ease;
-    overflow: hidden;
+    overflow-y: auto;
+    padding: 2rem 0;
 }
 
 /* Premium Animated Background */
@@ -50,16 +51,25 @@
 
 .close-creator {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background: transparent;
-    color: #444;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 5002;
 }
 
 .close-creator:hover {
-    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
 }
 
 .creator-header {
@@ -82,6 +92,7 @@
     margin-bottom: 0.5rem;
     background: linear-gradient(180deg, #fff 0%, #aaa 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

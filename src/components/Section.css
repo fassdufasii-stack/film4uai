@@ -112,6 +112,10 @@
         padding-right: 2rem;
         mask-image: none;
     }
+
+    .slider-btn {
+        display: none !important;
+    }
 }
 
 /* PREMIUM SHOWCASE VARIANT */

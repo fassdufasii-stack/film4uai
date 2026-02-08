@@ -45,7 +45,6 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
             headers: {
                 "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json",
-                "HTTP-Referer": window.location.origin,
                 "X-Title": "Film4u AI"
             },
             body: JSON.stringify({
@@ -65,7 +64,13 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
         return data.choices[0].message.content;
 
     } catch (error) {
-        console.error(`Model ${currentModel} failed:`, error.message);
+        console.error(`AI Model ${currentModel} error:`, error);
+
+        // Specific handling for "Load failed" (TypeErrors)
+        let errorMessage = error.message;
+        if (error instanceof TypeError && error.message.includes('fetch')) {
+            errorMessage = "Network error: AI connection blocked or offline.";
+        }
 
         // If we have more models to try, retry with the next one
         if (modelIndex < FALLBACK_MODELS.length - 1) {
@@ -73,8 +78,7 @@ async function callOpenRouter(messages, temperature = 0.7, maxTokens = 1024, mod
             return callOpenRouter(messages, temperature, maxTokens, modelIndex + 1);
         }
 
-        // If all models fail, throw the last error
-        throw error;
+        throw new Error(errorMessage);
     }
 }
 

@@ -132,6 +132,42 @@ h6 {
   justify-content: center;
 }
 
+/* Visibility Utilities */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.mobile-hide {
+  display: inline-block;
+}
+
+.desktop-hide {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+
+  .desktop-only,
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .mobile-only,
+  .desktop-hide {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 /* --- SCROLLBAR STYLING --- */
 ::-webkit-scrollbar {
   width: 8px;
